@@ -18,12 +18,12 @@ RSpec.describe Carnival do
   end
   
   it 'adds rides' do
-    expect(carnival.rides).to be []
+    expect(carnival.rides).to eq []
     carnival.add_ride(ride1)
-    expect(carnival.rides).to be [ride1]
+    expect(carnival.rides).to eq [ride1]
     carnival.add_ride(ride2)
     carnival.add_ride(ride3)
-    expect(carnival.rides).to be [ride1, ride2, ride3]
+    expect(carnival.rides).to eq [ride1, ride2, ride3]
   end
   
   it 'knows the most popular ride' do
