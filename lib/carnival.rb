@@ -29,9 +29,32 @@ class Carnival
     rides.sum{|ride| ride.total_revenue}
   end
 
-  def visitor_count
-    rides.flat_map do |ride|
-      ride.rider_log.keys
+  def unique_visitors
+    visitors = []
+    rides.each do |ride|
+      visitors << ride.rider_log.keys
     end
+    visitors.uniq
+  end
+
+  def visitor_count
+    unique_visitors.length
+  end
+
+  def ride_analysis
+    analysis = {}
+    @rides.each do |ride|
+      analysis[ride] = [ride.rider_log.keys[0], ride.total_revenue]  
+    end
+    analysis
+  end
+
+  def summary
+    {
+      visitor_count: visitor_count,
+      total_revenue: total_revenue,
+      visitor_analysis: visitor_analysis,
+      ride_analysis: ride_analysis
+    }
   end
 end
