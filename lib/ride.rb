@@ -30,5 +30,4 @@ class Ride
   def take_admission(visitor)
     visitor.update_spending_money(@admission_fee)
   end
-
 end
