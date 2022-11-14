@@ -3,7 +3,7 @@ require './lib/ride'
 require './lib/carnival'
 
 RSpec.describe Carnival do
-  let!(:carnival) {Carnival.new('30/10/22', '31/10/22')}
+  let!(:carnival) {Carnival.new(['2022/10/28', '2022/10/31'])}
   let!(:ride1) {Ride.new({ name: 'Carousel', min_height: 24, admission_fee: 1, excitement: :gentle })}
   let!(:visitor1) {Visitor.new('Bruce', 54, '$10')}
   let!(:visitor2) {Visitor.new('Tucker', 36, '$5')}
@@ -13,8 +13,8 @@ RSpec.describe Carnival do
 
   it 'starts as a Carnival class and a duration' do
     expect(carnival).to be_an_instance_of Carnival
-    expect(carnival.duration).to be 2
-    expect(carnival.rides).to be []
+    expect(carnival.duration).to be 3
+    expect(carnival.rides).to eq []
   end
   
   it 'adds rides' do
