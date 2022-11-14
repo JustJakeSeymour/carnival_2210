@@ -13,6 +13,11 @@ class Visitor
 
   def update_spending_money(admission)
     @spending_money -= admission
+    money_spent += admission
+  end
+
+  def money_spent
+    0
   end
 
   def add_preference(preference)

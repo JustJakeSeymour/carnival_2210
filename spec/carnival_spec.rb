@@ -70,8 +70,56 @@ RSpec.describe Carnival do
     ride1.board_rider(visitor2)
     ride2.board_rider(visitor1)
     ride3.board_rider(visitor3)
-   
+    
     expect(carnival.total_revenue).to eq 8
   end
   
+  it 'knows total visitor count' do
+    carnival.add_ride(ride1)
+    carnival.add_ride(ride2)
+    carnival.add_ride(ride3)
+    visitor1.add_preference(:gentle)
+    visitor2.add_preference(:gentle)
+    visitor2.add_preference(:thrilling)
+    visitor3.add_preference(:thrilling)
+    
+    3.times{ride1.board_rider(visitor2)}
+    2.times{ride2.board_rider(visitor1)}
+    2.times{ride3.board_rider(visitor3)}
+    
+    expect(carnival.visitor_count).to eq 3
+  end
+  
+  it 'can access a list of visitors, their favorite ride, and how much they spent' do
+    carnival.add_ride(ride1)
+    carnival.add_ride(ride2)
+    carnival.add_ride(ride3)
+    visitor1.add_preference(:gentle)
+    visitor2.add_preference(:gentle)
+    visitor2.add_preference(:thrilling)
+    visitor3.add_preference(:thrilling)
+    
+    
+    ride1.board_rider(visitor2)
+    ride2.board_rider(visitor1)
+    ride3.board_rider(visitor3)
+    
+    expect(carnival.visitor_analysis).to eq ({ visitor1 => [ride2, 5], visitor2 => [ride1, 1], visitor3 => [ride3, 2]})
+  end
+  
+  it 'can access a list of rides, who rode the ride, and its total revenue' do
+    carnival.add_ride(ride1)
+    carnival.add_ride(ride2)
+    carnival.add_ride(ride3)
+    visitor1.add_preference(:gentle)
+    visitor2.add_preference(:gentle)
+    visitor2.add_preference(:thrilling)
+    visitor3.add_preference(:thrilling)
+    
+    3.times{ride1.board_rider(visitor2)}
+    2.times{ride2.board_rider(visitor1)}
+    2.times{ride3.board_rider(visitor3)}
+
+    expect(carnival.ride_analysis).to eq ({ ride1 => [visitor2, 3], ride2 => [visitor1, 10], ride3 => [visitor3, 4]})
+  end
 end

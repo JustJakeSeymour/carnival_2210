@@ -85,4 +85,8 @@ RSpec.describe Ride do
     expect(ride3.rider_log).to eq ({ visitor3 => 1 })
     expect(ride3.total_revenue).to eq 2
   end
+
+  it 'does not allow a visitor to board if they do not have enough money' do 
+    
+  end
 end
