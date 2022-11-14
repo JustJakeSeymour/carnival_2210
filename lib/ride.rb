@@ -14,13 +14,23 @@ class Ride
   end
 
   def total_revenue
-    0
+    @admission_fee * rider_log.values.sum
   end
 
   def board_rider(visitor)
-    total_revenue + @admission_fee
-    visitor.spending_money - @admission_fee
+    return nil if !can_ride?(visitor)
+    take_admission(visitor)
     @rider_log[visitor] = (@rider_log[visitor].to_i + 1)
+    # require 'pry'; binding.pry
+    # @rider_log[visitor].key.spending_money -= @admission_fee
+  end
+
+  def can_ride?(visitor)
+    visitor.height > @min_height && visitor.preferences.any?{|preference| preference == @excitement}
+  end
+
+  def take_admission(visitor)
+    visitor.update_spending_money(@admission_fee)
   end
 
 end
