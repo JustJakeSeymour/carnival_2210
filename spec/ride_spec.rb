@@ -87,6 +87,13 @@ RSpec.describe Ride do
   end
 
   it 'does not allow a visitor to board if they do not have enough money' do 
-    
+    ride2 = Ride.new({ name: 'Ferris Wheel', min_height: 36, admission_fee: 5, excitement: :gentle })
+    expect(visitor2.spending_money).to eq 5
+    visitor2.add_preference(:gentle)
+    ride2.board_rider(visitor2)
+    expect(visitor2.spending_money).to eq 0
+    ride2.board_rider(visitor2)
+    expect(visitor2.spending_money).to eq 0
+    expect(ride2.rider_log[visitor2]).to eq 1
   end
 end

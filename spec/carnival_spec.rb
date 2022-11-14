@@ -122,4 +122,21 @@ RSpec.describe Carnival do
 
     expect(carnival.ride_analysis).to eq ({ ride1 => [visitor2, 3], ride2 => [visitor1, 10], ride3 => [visitor3, 4]})
   end
+
+  it 'returns a summary' do
+    carnival.add_ride(ride1)
+    carnival.add_ride(ride2)
+    carnival.add_ride(ride3)
+    visitor1.add_preference(:gentle)
+    visitor2.add_preference(:gentle)
+    visitor2.add_preference(:thrilling)
+    visitor3.add_preference(:thrilling)
+    
+    3.times{ride1.board_rider(visitor2)}
+    2.times{ride2.board_rider(visitor1)}
+    2.times{ride3.board_rider(visitor3)}
+
+    expect(carnival.summary).to eq ({ visitor_count: visitor_count, total_revenue: total_revenue, 
+                                      visitor_analysis: visitor_analysis, ride_analysis: ride_analysis})
+  end
 end

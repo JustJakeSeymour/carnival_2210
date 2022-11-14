@@ -24,7 +24,7 @@ class Ride
   end
 
   def can_ride?(visitor)
-    visitor.height > @min_height && visitor.preferences.any?{|preference| preference == @excitement}
+    visitor.height >= @min_height && visitor.preferences.any?{|preference| preference == @excitement} && visitor.spending_money >= @admission_fee
   end
 
   def take_admission(visitor)
