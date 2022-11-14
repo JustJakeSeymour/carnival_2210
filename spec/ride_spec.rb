@@ -19,13 +19,13 @@ RSpec.describe Ride do
   it 'boards riders and adds them to the rider log' do
     visitor1.add_preference(:gentle)
     visitor2.add_preference(:gentle)
-    expect(ride1.rider_log).to eq {}
+    expect(ride1.rider_log).to eq ({})
     ride1.board_rider(visitor1)
-    expect(ride1.rider_log).to eq ({ visitor1: 1 })
+    expect(ride1.rider_log).to eq ({ visitor1 => 1 })
     ride1.board_rider(visitor2)
-    expect(ride1.rider_log).to eq ({ visitor1: 1, visitor2: 1 })
+    expect(ride1.rider_log).to eq ({ visitor1 => 1, visitor2 => 1 })
     ride1.board_rider(visitor1)
-    expect(ride1.rider_log).to eq ({ visitor1: 2, visitor2: 1 })
+    expect(ride1.rider_log).to eq ({ visitor1 => 2, visitor2 => 1 })
   end
   
   it 'removes cost of ride from visitor for each time they ride' do

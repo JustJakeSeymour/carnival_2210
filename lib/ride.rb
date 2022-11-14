@@ -17,4 +17,10 @@ class Ride
     0
   end
 
+  def board_rider(visitor)
+    total_revenue + @admission_fee
+    visitor.spending_money - @admission_fee
+    @rider_log[visitor] = (@rider_log[visitor].to_i + 1)
+  end
+
 end
