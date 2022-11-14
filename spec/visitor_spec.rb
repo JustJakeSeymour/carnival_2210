@@ -27,5 +27,4 @@ RSpec.describe Visitor do
     expect(visitor3.tall_enough?(54)).to be true
     expect(visitor1.tall_enough?(64)).to be false
   end
-  
 end

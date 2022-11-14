@@ -21,8 +21,6 @@ class Ride
     return nil if !can_ride?(visitor)
     take_admission(visitor)
     @rider_log[visitor] = (@rider_log[visitor].to_i + 1)
-    # require 'pry'; binding.pry
-    # @rider_log[visitor].key.spending_money -= @admission_fee
   end
 
   def can_ride?(visitor)
